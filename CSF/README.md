@@ -61,6 +61,24 @@ Next, you will need to configure CSF as per your security standard. You can conf
 ```
 vi /etc/csf/csf.conf
 ```
+Services using the open ports:
+```
+Port 20: FTP data transfer
+Port 21: FTP control
+Port 22: Secure shell (SSH)
+Port 25: Simple mail transfer protocol (SMTP)
+Port 53: Domain name system (DNS)
+Port 80: Hypertext transfer protocol (HTTP)
+Port 110: Post office protocol v3 (POP3)
+Port 113: Authentication service/identification protocol
+Port 123: Network time protocol (NTP)
+Port 143: Internet message access protocol (IMAP)
+Port 443: Hypertext transfer protocol over SSL/TLS (HTTPS)
+Port 465: URL Rendesvous Directory for SSM (Cisco)
+Port 587: E-mail message submission (SMTP)
+Port 993: Internet message access protocol over SSL (IMAPS)
+Port 995: Post office protocol 3 over TLS/SSL (POP3S)
+```
 
 Change the following line per your requirements:
 ```
