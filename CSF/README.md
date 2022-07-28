@@ -194,3 +194,41 @@ Save and close the file, then restart the CSF and LFD service to apply the chang
 csf -r
 service lfd restart
 ```
+## Step 6 Blocking and Allowing IP Addresses in CSF Firewall
+
+One of the key functionalities of a firewall is the ability to allow or block IP addresses from accessing the server. With CSF, you can whitelist (allow), blacklist (deny) or ignore IP addresses by modifying the following configuration files:
+
+```
+csf.allow
+csf.deny
+csf.ignore
+```
+### Block an IP Address in CSF
+
+To block an IP address, simply access the csf.deny configuration file.
+```
+$ sudo nano /etc/csf/csf.deny
+```
+Then specify the IP addresses that you want to block. You can specify the IP addresses line by line as shown:
+```
+192.168.100.50
+192.168.100.120
+```
+Or you can use the CIDR notation to block an entire subnet.
+
+192.168.100.0/24
+
+### Allow an IP Address in CSF
+To allow an IP address through Iptables and exclude it from all filters or blocks, edit the csf.allow configuration file.
+```
+$ sudo nano /etc/csf/csf.allow
+```
+
+### Exclude an IP Address in CSF
+
+Additionally, CSF provides you with the ability to exclude an IP address from IPtables or filters. Any IP address in the csf.ignore file will be exempted from the iptables filters. It can only be blocked if specified in the csf.deny file.
+
+To exempt an IP address from the filters, access the csf.ignore file.
+```
+$ sudo nano /etc/csf/csf.ignore
+```
