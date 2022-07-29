@@ -151,7 +151,62 @@ num pkts bytes target prot opt in out source destination
 Chain POSTROUTING (policy ACCEPT 1 packets, 76 bytes)
 num pkts bytes target prot opt in out source destination
 ```
+### Port Flood Protection
+```
+PORTFLOOD = “port;protocol;hit_count;interval_in_seconds”
+```
+You can add multiple ports separated by commas.
 
+Here is an example for enabling port flood protection.
+```
+PORTFLOOD = “80;tcp;50;10”
+```
+This means that if the number of connections to port 80 exceeds 50 in ten seconds, all the new connections will be blocked.
+
+
+### Connection Limit Protection
+```
+CONNLIMIT = “port;limit”
+```
+We can set connection limits for multiple ports separated by comma. Here is an example:
+```
+CONNLIMIT = "80;10,21;2"
+```
+This means, the maximum concurrent connections to port 80 (HTTP) from a single IP is 10 and to port 21 (FTP) per IP is 2.
+
+Here are the examples of CT options in the configuration.
+```
+CT_LIMIT = “100”
+```
+All IPs with more than 100 connections will be blocked.
+
+## CT_BLOCK_TIME = “3600”
+
+This is to set the time period of the IP block for excessive connection limit. Above setting will block th eIP with excess connections for 3600 seconds or 1 hour.
+```
+CT_INTERVAL = “60”
+```
+This value sets the interval in seconds between the Connection Tracking scans and in the above example the scans will take place with 60 seconds.
+
+
+### Useful csf command options
+
+Block an IP with CSF
+```
+csf -d < IP Address >
+```
+Allow an IP with CSF
+```
+csf -a < IP Address >
+```
+Unblock an IP with CSF
+```
+csf -dr < IP Address >
+```
+Unblock a temporarily blocked IP with CSF
+```
+csf -tr < IP Address >
+```
 ## Step 5 – Enable CSF Web UI
 
 CSF provides a web-based interface to manage the firewall from a web browser. By default, it is disabled in the CSF default configuration file, so you will need to enable it first.
