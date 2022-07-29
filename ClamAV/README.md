@@ -51,6 +51,18 @@ clamscan \
 ## More resource - create a cron job for running virus scanning automatically
 https://www.techrepublic.com/article/how-to-install-and-use-clamav-on-ubuntu-server-20-04/
 
+## uninstall or remove clamav software package
 
-
-  .
+```
+$ sudo apt-get remove clamav 
+```
+Uninstall clamav including dependent package
+If you would like to remove clamav and it's dependent packages which are no longer needed from Ubuntu,
+```
+$ sudo apt-get remove --auto-remove clamav 
+```
+Use Purging clamav
+If you use with purge options to clamav package all the configuration and dependent packages will be removed.
+```
+$ sudo apt-get purge clamav 
+```
